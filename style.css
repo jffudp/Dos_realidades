@@ -1,0 +1,250 @@
+/* ============================================================
+   DOS REALIDADES — CSS
+   Diseño: dos pantallas apiladas, efecto "pantalla rota",
+   textos minimalistas en esquinas, tipografía monospace.
+   ============================================================ */
+
+:root {
+  --bg:       #050505;
+  --text:     #00ff41;        /* verde Matrix */
+  --text-dim: #008f11;        /* verde oscuro */
+  --color-a:  #00ff41;        /* neón verde   — Sistema A */
+  --color-b:  #5ce1ff;        /* neón celeste — Sistema B */
+  --font: "Courier New", Courier, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  overflow-x: hidden;
+}
+
+video, #hiddenSample { display: none; }
+
+/* ─── REALM (panel compacto, apilado) ─── */
+.realm {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 28px 32px; /* más compacto para que queden más juntos */
+}
+
+/* Divisor muy sutil entre A y B */
+#realmA { border-bottom: 1px solid #ffffff08; }
+
+/* ─── ESQUINAS ─── */
+.corner {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.corner--tl { top: 14px;    left: 28px;  }
+.corner--tr { top: 14px;    right: 28px; text-align: right; }
+.corner--bl { bottom: 10px; left: 28px;  }
+.corner--br { bottom: 10px; right: 28px; text-align: right; }
+
+.corner-label {
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text);
+  font-weight: bold;
+}
+
+.corner-sub {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+.corner-stat {
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.status-msg {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  margin-top: 5px;
+}
+
+/* ─── BOTÓN ─── */
+.btn-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: transparent;
+  border: 1.5px solid currentColor;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-txt { pointer-events: none; }
+
+/* Punto de estado (indicator) */
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  flex-shrink: 0;
+}
+
+/* Cuando el sistema está en vivo, el dot pulsa */
+.btn-wrapper.is-live .dot {
+  background: var(--text);
+  box-shadow: 0 0 6px var(--text);
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* ─── CANVAS WRAP ─── */
+.canvas-wrap {
+  position: relative;
+  width: min(75vw, 85vh); /* más grande que antes */
+  aspect-ratio: 4 / 3;
+  background: #000;
+}
+
+.canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: scaleX(-1); /* espejo natural */
+}
+
+.idle-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+/* ─── EFECTO "PANTALLA ROTA" ─── */
+
+/*
+  Sistema A: la grieta revienta desde la esquina inferior-derecha.
+  La forma es casi un rectángulo perfecto, pero el borde inferior-derecho
+  tiene tres puntos irregulares que se salen del recuadro, como si el
+  canvas estuviera empujando hacia afuera intentando escapar.
+*/
+.canvas-wrap--a {
+  clip-path: polygon(
+    0%    0%,
+    100%  0%,
+    100%  62%,
+    97%   70%,
+    104%  79%,    /* shard: sale fuera del borde derecho */
+    92%   88%,
+    101%  96%,    /* shard: sale fuera del borde inferior-derecho */
+    85%   100%,
+    0%    100%
+  );
+  /* drop-shadow sigue la forma del clip-path → glow en los bordes rotos */
+  filter:
+    drop-shadow(0 0  8px var(--color-a))
+    drop-shadow(0 0 24px var(--color-a));
+}
+
+/*
+  Sistema B: la grieta revienta desde la esquina superior-izquierda.
+  Dirección opuesta a A: si A escapa hacia abajo-derecha, B escapa
+  hacia arriba-izquierda, tensando la composición en diagonal.
+*/
+.canvas-wrap--b {
+  clip-path: polygon(
+    14%   0%,
+    -4%   -3%,   /* shard: sale fuera del borde superior-izquierdo */
+    6%    10%,
+    -3%   18%,   /* shard: sale fuera del borde izquierdo */
+    4%    26%,
+    0%    33%,
+    100%  33%,   /* el sistema B "comienza" a un tercio desde arriba */
+    100%  100%,
+    0%    100%
+  );
+  filter:
+    drop-shadow(0 0  8px var(--color-b))
+    drop-shadow(0 0 24px var(--color-b));
+}
+
+/* ─── SECCIÓN REFLEXIÓN ─── */
+.reflection-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 28px 100px;
+  border-top: 1px solid #00ff4122;
+}
+
+.reflection-section h2 {
+  font-size: 1.15rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0 0 30px;
+}
+
+.reflection-section p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--text-dim);
+  margin: 0 0 22px;
+  text-align: justify;
+}
+
+.reflection-section p:last-child { margin-bottom: 0; }
+
+/* ─── FOOTER ─── */
+.site-footer {
+  text-align: center;
+  padding: 24px 24px 60px;
+  border-top: 1px solid #ffffff06;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+}

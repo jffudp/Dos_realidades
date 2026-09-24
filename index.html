@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Dos realidades</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ─── SISTEMA A ─── -->
+<section class="realm" id="realmA">
+
+  <!-- Esquina superior izquierda: identidad -->
+  <div class="corner corner--tl">
+    <span class="corner-label">SISTEMA_A</span>
+    <span class="corner-sub">MediaPipe · HandLandmarker</span>
+    <span class="corner-sub">jeffer.M.D</span>
+  </div>
+
+  <!-- Esquina superior derecha: ejercicio -->
+  <div class="corner corner--tr">
+    <span class="corner-label">EJERCICIO_02</span>
+    <span class="corner-sub">DPPI · 2026</span>
+  </div>
+
+  <!-- El lienzo: protagonista central -->
+  <div class="canvas-wrap canvas-wrap--a">
+    <canvas id="canvasA" width="640" height="480"></canvas>
+    <p class="idle-hint" id="idleHintA">buscando mano…</p>
+  </div>
+
+  <!-- Esquina inferior izquierda: estado -->
+  <div class="corner corner--bl">
+    <span id="statA" class="corner-stat">sin datos</span>
+  </div>
+
+  <!-- Esquina inferior derecha: botón de encendido -->
+  <div class="corner corner--br">
+    <div class="btn-wrapper" id="cameraBtnWrapperA">
+      <button class="btn" id="startBtnA" type="button">
+        <div class="dot" id="dotA"></div>
+        <span class="btn-txt">Activar A</span>
+      </button>
+    </div>
+    <p id="statusMsgA" class="status-msg">Sistema A inactivo.</p>
+  </div>
+
+</section>
+
+
+<!-- ─── SISTEMA B ─── -->
+<section class="realm" id="realmB">
+
+  <!-- Esquina superior izquierda: botón de encendido -->
+  <div class="corner corner--tl">
+    <div class="btn-wrapper" id="cameraBtnWrapperB">
+      <button class="btn" id="startBtnB" type="button" disabled>
+        <div class="dot" id="dotB"></div>
+        <span class="btn-txt">Activar B</span>
+      </button>
+    </div>
+    <p id="statusMsgB" class="status-msg">Activa A primero.</p>
+  </div>
+
+  <!-- Esquina superior derecha: estado -->
+  <div class="corner corner--tr">
+    <span id="statB" class="corner-stat">sin datos</span>
+  </div>
+
+  <!-- El lienzo: protagonista central -->
+  <div class="canvas-wrap canvas-wrap--b">
+    <canvas id="canvasB" width="640" height="480"></canvas>
+  </div>
+
+  <!-- Esquina inferior izquierda: identidad -->
+  <div class="corner corner--bl">
+    <span class="corner-label">SISTEMA_B</span>
+    <span class="corner-sub">Diferencia de frames</span>
+  </div>
+
+  <!-- Esquina inferior derecha: crédito -->
+  <div class="corner corner--br">
+    <span class="corner-label">Dos realidades</span>
+    <span class="corner-sub">Felipe · UDP</span>
+  </div>
+
+</section>
+
+<!-- ─── REFLEXIÓN ─── -->
+<section class="reflection-section">
+  <h2>Reflexión</h2>
+  <p>
+    Frente a la cámara ocurre una sola escena, pero cada sistema encuentra algo distinto en ella. Uno reconoce
+    un cuerpo a través de puntos y relaciones; el otro simplemente observa dónde algo cambia. Ninguno está
+    equivocado, pero ninguno puede verlo todo.
+  </p>
+  <p>
+    Merleau-Ponty planteaba que nuestra percepción está ligada a las posibilidades y límites de nuestro cuerpo.
+    Con las máquinas ocurre algo parecido: aquello que pueden percibir depende de cómo fueron construidas y de
+    qué les enseñamos a buscar.
+  </p>
+  <p>
+    Kosuth, por otro lado, nos permite recordar que una representación nunca es aquello que representa. Los
+    puntos, las líneas y las huellas de movimiento hablan de una persona, pero no son esa persona.
+  </p>
+  <p>
+    Tal vez lo interesante de construir una máquina que observa no sea preguntarnos cuánto puede ver, sino
+    comenzar a reconocer todo aquello que, inevitablemente, deja fuera.
+  </p>
+</section>
+
+<footer class="site-footer">
+  <p>Felipe Roa R. · Ejercicio 02 · DPPI 2026 · Escuela de Diseño UDP</p>
+</footer>
+
+<!-- Elementos ocultos necesarios para el script -->
+<video id="video" playsinline autoplay muted></video>
+<canvas id="hiddenSample" width="48" height="36"></canvas>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
