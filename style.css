@@ -232,7 +232,7 @@ video, #hiddenSample { display: none; }
 .reflection-section p {
   font-size: 1.05rem;
   line-height: 1.9;
-  color: var(--text-dim);
+  color: #a8ffb2; /* verde claro de alto contraste y legibilidad */
   margin: 0 0 22px;
   text-align: justify;
 }

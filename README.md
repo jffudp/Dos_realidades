@@ -27,11 +27,9 @@ Luego, abre tu navegador en `http://localhost:8000`, concede los permisos de cá
 
 ## Reflexión
 
-Reflexión
+Lo virtual suele entenderse como una ilusión separada del mundo físico, pero como planteaba **Pierre Lévy**, lo virtual no se opone a lo real, sino a lo actual: es una dimensión latente donde nuevas formas de presencia y corporalidad cobran existencia. Al situar nuestras manos frente al sensor, la máquina no las reproduce de forma pasiva; las reinterpreta y desmaterializa en una trama viva de vectores y luz.
 
-Lo virtual suele entenderse como una ilusión separada del mundo físico, pero como planteaba Pierre Lévy, lo virtual no se opone a lo real, sino a lo actual: es una dimensión latente donde nuevas formas de presencia y corporalidad cobran existencia. Al situar nuestras manos frente al sensor, la máquina no las reproduce de forma pasiva; las reinterpreta y desmaterializa en una trama viva de vectores y luz.
-
-Por su parte, Jean Baudrillard advertía en sus estudios sobre la simulación que cuando la interfaz intermedia nuestra experiencia, las fronteras entre lo tangible y lo simulado colapsan en una nueva hiperrealidad. El marco fracturado de las pantallas en este proyecto encarna precisamente esa fricción: el deseo del cuerpo sintético por desbordar el vidrio y proyectarse hacia el espacio físico.
+Por su parte, **Jean Baudrillard** advertía en sus estudios sobre la simulación que cuando la interfaz intermedia nuestra experiencia, las fronteras entre lo tangible y lo simulado colapsan en una nueva hiperrealidad. El marco fracturado de las pantallas en este proyecto encarna precisamente esa fricción: el deseo del cuerpo sintético por desbordar el vidrio y proyectarse hacia el espacio físico.
 
 Entre la telaraña algorítmica de la mano y la lluvia de datos en movimiento, el dispositivo deja de ser un simple espejo para convertirse en un umbral. Nos revela que la realidad virtual no es un escape de la materia, sino una extensión de nuestra capacidad para habitar simultáneamente múltiples formas de existencia.
 
